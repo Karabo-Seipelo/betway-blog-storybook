@@ -3,48 +3,80 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { TrendingUp } from '@styled-icons/material';
 
-export const Card = (props) => {
-    const {backgroundColor, title, teaser, category, author, appearance, CardWrapper} = props;
+export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow}) => {
 
     const APPEARANCES = {
         FEATURED: 'featured',
         DEFAULT: 'default',
-        SMALL: 'small',
+        THUMB: 'thumb',
+        STRIP: 'strip',
     };
 
     const Wrapper = styled.div`
         @media (min-width: 1024px) {
             position: relative;
             height: 320px;
-
-            animation-duration: 600ms;
-            animation-fill-mode: backwards;
-            animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             overflow: hidden;
-            transition: box-shadow 800ms, -webkit-box-shadow 800ms;
-            box-shadow: 0 2px 2px 0 rgba(77,77,79,0.08), 0 0 2px 0 rgba(77,77,79,0.16);
 
-            ${props => props.appearance === APPEARANCES.FEATURED && 
+            ${boxshadow === true && 
+                `
+                animation-duration: 600ms;
+                animation-fill-mode: backwards;
+                animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+                transition: box-shadow 800ms, -webkit-box-shadow 800ms;
+                box-shadow: 0 2px 2px 0 rgba(77,77,79,0.08), 0 0 2px 0 rgba(77,77,79,0.16);
+                `
+            }
+
+            
+
+            ${appearance === APPEARANCES.FEATURED && 
                 `
                     width: 1152px;
                     height: 320px;
                 `
             }
 
-            ${props => props.appearance === APPEARANCES.DEFAULT && 
+            ${appearance === APPEARANCES.THUMB && 
                 `
                     width: 215px;
                     height: 300px;
                 `
             }
-        }
 
-        &:hover {
-            @media (min-width: 1024px) {
-                box-shadow: 0 6px 15px 0 rgba(0,0,0,0.1);
+
+            ${appearance === APPEARANCES.DEFAULT && 
+                `
+                    width: 270px;
+                    height: 300px;
+                `
+            }
+
+            ${appearance === APPEARANCES.STRIP && 
+                `
+                    width: 360px;
+                    height: 100px;
+                `
             }
         }
+
+
+        ${boxshadow === true &&    
+            `
+            &:hover {
+                @media (min-width: 1024px) {
+                    ${appearance !== APPEARANCES.STRIP && 
+                        `
+                        box-shadow: 0 6px 15px 0 rgba(0,0,0,0.1);
+                        `
+                    }
+                }
+            }
+            `
+        }
+
+       
     `;
 
     const ThumbNail = styled.div`
@@ -58,6 +90,38 @@ export const Card = (props) => {
                 float: left;
                 width: 50%;
                 height: 100%;
+
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                        width: 50%;
+                        height: 100%;
+                    `
+                }
+
+                ${appearance === APPEARANCES.THUMB && 
+                    `
+                        width: 100%;
+                        height: 50%;
+                        float: none;
+                        margin-right: 0;
+                    `
+                }
+    
+                ${appearance === APPEARANCES.DEFAULT && 
+                    `
+                        width: 100%;
+                        height: 50%;
+                        float: none;
+                        margin-right: 0;
+                    `
+                }
+    
+                ${appearance === APPEARANCES.STRIP && 
+                    `
+                        width: 40%;
+                        height: 100%;
+                    `
+                }
             }
 
     `;
@@ -71,10 +135,41 @@ export const Card = (props) => {
             @media (min-width: 1024px) {
                 position: relative;
                 display: inline-block;
-                float: left;
-                width: calc(50% - 40px);
-                height: calc(100% - 40px);
-                padding: 20px;
+                
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                        float: left;
+                        width: calc(50% - 40px);
+                        height: calc(100% - 40px);
+                        padding: 20px;
+                    `
+                }
+
+                ${appearance === APPEARANCES.THUMB && 
+                    `
+                        width: calc(100% - 40px);
+                        height: calc(50% - 40px);
+                        padding: 20px;
+                    `
+                }
+    
+                ${appearance === APPEARANCES.DEFAULT && 
+                    `
+                        width: calc(100% - 40px);
+                        height: calc(50% - 40px);
+                        padding: 20px;
+                    `
+                }
+    
+                ${appearance === APPEARANCES.STRIP && 
+                    `
+                    display: inline-block;
+                    width: calc(60% - 20px);
+                    height: calc(100% - (14px * 4));
+                    padding: 10px;
+                    padding-top: calc(14px * 3);
+                    `
+                }
             }
     `;
 
@@ -87,8 +182,39 @@ export const Card = (props) => {
             display: inline;
         
             @media (min-width: 1024px) {
-                font-size: 28px;
+                
                 font-weight: bold;
+
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                    font-size: 28px;
+                    display: inline;
+                    `
+                }
+
+                ${appearance === APPEARANCES.THUMB && 
+                    `
+                    font-size: 16px;
+                    display: inline-block;
+                    margin: 0;
+                    `
+                }
+
+                ${appearance === APPEARANCES.DEFAULT && 
+                    `
+                    font-size: 16px;
+                    display: inline-block;
+                    margin: 0;
+                    `
+                }
+
+                ${appearance === APPEARANCES.STRIP && 
+                    `
+                    font-size: 14px;
+                    display: inline-block;
+                    margin: 0;
+                    `
+                }
             }
 
     `;
@@ -97,18 +223,25 @@ export const Card = (props) => {
             display: none;
         
             @media (min-width: 1024px) {
-                display: block;
                 font-size: 22px;
                 margin-top: 20px;
+
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                        display: block;
+                    `
+                }
             }
     `;
 
     const CreatedDate = styled.div`
+        ${appearance === APPEARANCES.FEATURED && 
+            `
+            position: absolute;
             font-size: 18px;
             width: calc(64px - 20px);
             height: calc(64px - 20px);
             padding: 10px;
-            position: absolute;
             top: 0;
             left: 0;
             background-color: #81C341;
@@ -120,31 +253,87 @@ export const Card = (props) => {
             span {
                 display: block;
             }
+            `
+        }
+
+        ${appearance === APPEARANCES.THUMB && 
+            `
+            display: inline-block;
+            `
+        }
+
+        ${appearance === APPEARANCES.DEFAULT && 
+            `
+            display: inline-block;
+            `
+        }
+
+        ${appearance === APPEARANCES.STRIP && 
+            `
+            display: inline-block;
+            `
+        }
     `;
 
     const MediaIcon = styled.div`
-            width: calc(64px - 20px);
-            height: calc(64px - 20px);
-            padding: 10px;
+            
             position: absolute;
             bottom: 0;
             left: 0;
             background-color: rgba(255, 255, 255, .9);
             z-index: 1;
 
+            ${appearance === APPEARANCES.FEATURED && 
+                `
+                width: calc(64px - 20px);
+                height: calc(64px - 20px);
+                padding: 10px;
+                `
+            }
+
+            ${appearance === APPEARANCES.THUMB && 
+                `
+                width: calc(50px - 20px);
+                height: calc(50px - 20px);
+                padding: 10px;
+                `
+            }
+
+            ${appearance === APPEARANCES.DEFAULT && 
+                `
+                width: calc(50px - 20px);
+                height: calc(50px - 20px);
+                padding: 10px;
+                `
+            }
+
             @media (min-width: 834px) {
-                vertical-align: unset;
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                    vertical-align: unset;
+                    `
+                }
             }
             
             @media (min-width: 768px) {
-                width: 64px;
-                height: 64px;
-                padding: 0;
-                font-weight: 900;
-                font-size: 1.25em;
+                ${appearance === APPEARANCES.FEATURED && 
+                    `
+                    width: calc(64px - 20px);
+                    height: calc(64px - 20px);
+                    `
+                }
+
+                ${appearance === APPEARANCES.THUMB && 
+                    `
+                    `
+                }
+
+                ${appearance === APPEARANCES.DEFAULT && 
+                    `
+                    `
+                }
+        
                 text-align: center;
-                line-height: 57.6px;
-                word-spacing: 64px;
             }
     `;
 
@@ -161,12 +350,57 @@ export const Card = (props) => {
             font-size: 1.1em;
             line-height: 1.6em;
             margin-right: 5px;
+
+            ${appearance === APPEARANCES.THUMB && 
+                `
+                    display: none;
+                `
+            }
+
+            ${appearance === APPEARANCES.DEFAULT && 
+                `
+                    display: none;
+                `
+            }
+
+            ${appearance === APPEARANCES.STRIP && 
+                `
+                display: none;
+                `
+            }
     `;
 
     const MetaData = styled.div`
-            position: absolute;
+        position: absolute;
+        
+        
+        ${appearance === APPEARANCES.FEATURED && 
+            `
             bottom: 20px;
             left: 20px;
+            `
+        }
+
+        ${appearance === APPEARANCES.THUMB && 
+            `
+            bottom: 20px;
+            left: 20px;
+            `
+        }
+
+        ${appearance === APPEARANCES.DEFAULT && 
+            `
+            bottom: 20px;
+            left: 20px;
+            `
+        }
+
+        ${appearance === APPEARANCES.STRIP && 
+            `
+            top: 10px;
+            font-size: 14px;
+            `
+        }
     `;
 
     const CategoryLink = styled.a`
@@ -177,6 +411,24 @@ export const Card = (props) => {
             float: left;
             clear: right;
             z-index: 11;
+
+            ${appearance === APPEARANCES.THUMB && 
+                `
+                display: none;
+                `
+            }
+
+            ${appearance === APPEARANCES.DEFAULT && 
+                `
+                display: none;
+                `
+            }
+
+            ${appearance === APPEARANCES.STRIP && 
+                `
+                display: none;
+                `
+            }
     `;
 
     const AuthorLink = styled.a`
@@ -188,24 +440,22 @@ export const Card = (props) => {
         }
     `;
 
-    const applyStyle = CardWrapper => {
-        return (CardWrapper && Wrapper.withComponent(({...rest})=> (
-            <CardWrapper {...rest} />
-        )))
-    }
-
-
     return (
         <Wrapper
-            style={backgroundColor && {backgroundColor}} {...props}>
+            style={backgroundColor && {backgroundColor}}>
                 <ThumbNail>
-                    <CreatedDate>
-                        <span>23</span>
-                        <span>Oct</span>
-                    </CreatedDate>
-                    <MediaIcon>
-                        <OddsIcon size="40" />
-                    </MediaIcon>
+                    {appearance === APPEARANCES.FEATURED && 
+                        <CreatedDate>
+                            <span>23</span>
+                            <span>Oct</span>
+                        </CreatedDate>
+                    }
+                    {appearance !== APPEARANCES.STRIP && 
+                        <MediaIcon>
+                            <OddsIcon size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />
+                        </MediaIcon>
+                    }
+                   
                 </ThumbNail>
                 <Content>
                     {title && <ContentHeader>
@@ -214,6 +464,9 @@ export const Card = (props) => {
                     </ContentHeader>}
                     {teaser && <Teaser>{teaser}</Teaser>}
                     <MetaData>
+                        {appearance !== APPEARANCES.FEATURED && 
+                            <CreatedDate>23 Oct</CreatedDate>
+                        }
                         {category && <CategoryLink href={category.url}>{category.name}</CategoryLink>}
                         {author && <AuthorLink href={author.url}>{author.name}</AuthorLink>}
                     </MetaData>
@@ -223,7 +476,7 @@ export const Card = (props) => {
 }
 
 Card.propTypes = {
-    appearance: PropTypes.oneOf(['featured', 'default', 'small']),
+    appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip']),
     backgroundColor: PropTypes.string,
     title: PropTypes.string,
     teaser: PropTypes.string,
@@ -235,11 +488,11 @@ Card.propTypes = {
         name: PropTypes.string,
         url: PropTypes.string
     },
-    CardWrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    boxshadow: PropTypes.bool
 }
 
 Card.defaultProps = {
     backgroundColor: "white",
     appearance: "featured",
-    CardWrapper: undefined
+    boxshadow: false
 }

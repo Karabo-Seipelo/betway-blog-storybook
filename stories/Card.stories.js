@@ -24,7 +24,8 @@ Featured.args = {
         name: "Adam Drury",
         url: "http://youtube.com"
     },
-    appearance: "featured"
+    appearance: "featured",
+    boxshadow: true,
 }
 
 export const Default = Template.bind({});
@@ -40,12 +41,13 @@ Default.args = {
         name: "Adam Drury",
         url: "http://youtube.com"
     },
-    appearance: "default"
+    appearance: "default",
+    boxshadow: true,
 }
 
-export const Small = Template.bind({});
+export const Thumb = Template.bind({});
 
-Small.args = {
+Thumb.args = {
     title: "Sunday Betting Guide: Our writers' 5 best football tips",
     teaser: "We've compiled our best football tips, including win/draw/win and total goals, into one bite-size betting preview for Sunday's matches. You can back the 32/1 five-fold.", 
     category: {
@@ -56,5 +58,22 @@ Small.args = {
         name: "Adam Drury",
         url: "http://youtube.com"
     },
-    appearance: "small"
+    appearance: "thumb",
+    boxshadow: true,
+}
+
+export const Strip = Template.bind({});
+
+Strip.args = {
+    title: "Sunday Betting Guide: Our writers' 5 best football tips",
+    teaser: "We've compiled our best football tips, including win/draw/win and total goals, into one bite-size betting preview for Sunday's matches. You can back the 32/1 five-fold.", 
+    category: {
+        name: "Accumulator",
+        url: "http://google.com"
+    }, 
+    author: {
+        name: "Adam Drury",
+        url: "http://youtube.com"
+    },
+    appearance: "strip",
 }
