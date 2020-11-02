@@ -14,8 +14,6 @@ export const Card = (props) => {
 
     const Wrapper = styled.div`
         @media (min-width: 1024px) {
-            width: 1152px;
-
             position: relative;
             height: 320px;
 
@@ -26,6 +24,20 @@ export const Card = (props) => {
             overflow: hidden;
             transition: box-shadow 800ms, -webkit-box-shadow 800ms;
             box-shadow: 0 2px 2px 0 rgba(77,77,79,0.08), 0 0 2px 0 rgba(77,77,79,0.16);
+
+            ${props => props.appearance === APPEARANCES.FEATURED && 
+                `
+                    width: 1152px;
+                    height: 320px;
+                `
+            }
+
+            ${props => props.appearance === APPEARANCES.DEFAULT && 
+                `
+                    width: 215px;
+                    height: 300px;
+                `
+            }
         }
 
         &:hover {
@@ -181,8 +193,6 @@ export const Card = (props) => {
             <CardWrapper {...rest} />
         )))
     }
-
-    const StyledCardWrapper = React.useMemo(() => applyStyle(CardWrapper), [CardWrapper]);
 
 
     return (

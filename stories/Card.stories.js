@@ -26,3 +26,35 @@ Featured.args = {
     },
     appearance: "featured"
 }
+
+export const Default = Template.bind({});
+
+Default.args = {
+    title: "Sunday Betting Guide: Our writers' 5 best football tips",
+    teaser: "We've compiled our best football tips, including win/draw/win and total goals, into one bite-size betting preview for Sunday's matches. You can back the 32/1 five-fold.", 
+    category: {
+        name: "Accumulator",
+        url: "http://google.com"
+    }, 
+    author: {
+        name: "Adam Drury",
+        url: "http://youtube.com"
+    },
+    appearance: "default"
+}
+
+export const Small = Template.bind({});
+
+Small.args = {
+    title: "Sunday Betting Guide: Our writers' 5 best football tips",
+    teaser: "We've compiled our best football tips, including win/draw/win and total goals, into one bite-size betting preview for Sunday's matches. You can back the 32/1 five-fold.", 
+    category: {
+        name: "Accumulator",
+        url: "http://google.com"
+    }, 
+    author: {
+        name: "Adam Drury",
+        url: "http://youtube.com"
+    },
+    appearance: "small"
+}
