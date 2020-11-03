@@ -26,6 +26,7 @@ Featured.args = {
     },
     appearance: "featured",
     boxshadow: true,
+    icon: "tipster"
 }
 
 export const Default = Template.bind({});
@@ -43,6 +44,7 @@ Default.args = {
     },
     appearance: "default",
     boxshadow: true,
+    icon: "quiz"
 }
 
 export const Thumb = Template.bind({});

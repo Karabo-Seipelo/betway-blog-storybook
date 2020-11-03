@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Icon } from '../Icon/Icon';
 import { TrendingUp } from '@styled-icons/material';
 
-export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow}) => {
+export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow, icon}) => {
 
     const APPEARANCES = {
         FEATURED: 'featured',
         DEFAULT: 'default',
         THUMB: 'thumb',
         STRIP: 'strip',
+        MINI: 'mini',
     };
 
     const Wrapper = styled.div`
@@ -33,6 +35,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.FEATURED && 
                 `
+                    background: ${backgroundColor};
                     width: 1152px;
                     height: 320px;
                 `
@@ -40,6 +43,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.THUMB && 
                 `
+                    background: ${backgroundColor};
                     width: 215px;
                     height: 300px;
                 `
@@ -48,6 +52,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.DEFAULT && 
                 `
+                    background: ${backgroundColor};
                     width: 270px;
                     height: 300px;
                 `
@@ -55,28 +60,49 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.STRIP && 
                 `
+                    background: ${backgroundColor};
                     width: 360px;
                     height: 100px;
+                `
+            }
+
+            ${appearance === APPEARANCES.MINI && 
+                `
+                    width: calc(100% - 40px);
+                    height: 100px;
+                    padding: 10px 20px;
                 `
             }
         }
 
 
-        ${boxshadow === true &&    
-            `
-            &:hover {
+        
+
+        &:hover {
+            ${boxshadow === true &&    
+                `
                 @media (min-width: 1024px) {
                     ${appearance !== APPEARANCES.STRIP && 
                         `
                         box-shadow: 0 6px 15px 0 rgba(0,0,0,0.1);
                         `
                     }
-                }
-            }
-            `
-        }
 
-       
+                    ${appearance !== APPEARANCES.MINI && 
+                        `
+                        box-shadow: 0 6px 15px 0 rgba(0,0,0,0.1);
+                        `
+                    }
+                }
+                `
+            }
+
+            ${appearance == APPEARANCES.MINI && 
+                `
+                background: ${backgroundColor};
+                `
+            }
+        }
     `;
 
     const ThumbNail = styled.div`
@@ -117,6 +143,13 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 }
     
                 ${appearance === APPEARANCES.STRIP && 
+                    `
+                        width: 40%;
+                        height: 100%;
+                    `
+                }
+
+                ${appearance === APPEARANCES.MINI && 
                     `
                         width: 40%;
                         height: 100%;
@@ -170,6 +203,16 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                     padding-top: calc(14px * 3);
                     `
                 }
+
+                ${appearance === APPEARANCES.MINI && 
+                    `
+                    display: inline-block;
+                    width: calc(60% - 20px);
+                    height: calc(100% - (14px * 4));
+                    padding: 10px;
+                    padding-top: calc(14px * 3);
+                    `
+                }
             }
     `;
 
@@ -209,6 +252,14 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 }
 
                 ${appearance === APPEARANCES.STRIP && 
+                    `
+                    font-size: 14px;
+                    display: inline-block;
+                    margin: 0;
+                    `
+                }
+
+                ${appearance === APPEARANCES.MINI && 
                     `
                     font-size: 14px;
                     display: inline-block;
@@ -269,6 +320,12 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
         }
 
         ${appearance === APPEARANCES.STRIP && 
+            `
+            display: inline-block;
+            `
+        }
+
+        ${appearance === APPEARANCES.MINI && 
             `
             display: inline-block;
             `
@@ -337,10 +394,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             }
     `;
 
-    const OddsIcon = styled(TrendingUp)`
-        color: #81C341;
-    `
-
     const New = styled.div`
             background-color: #81C341;
             font-weight: 900;
@@ -364,6 +417,12 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             }
 
             ${appearance === APPEARANCES.STRIP && 
+                `
+                display: none;
+                `
+            }
+
+            ${appearance === APPEARANCES.MINI && 
                 `
                 display: none;
                 `
@@ -401,6 +460,13 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             font-size: 14px;
             `
         }
+
+        ${appearance === APPEARANCES.MINI && 
+            `
+            top: 10px;
+            font-size: 14px;
+            `
+        }
     `;
 
     const CategoryLink = styled.a`
@@ -429,6 +495,12 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 display: none;
                 `
             }
+
+            ${appearance === APPEARANCES.MINI && 
+                `
+                display: none;
+                `
+            }
     `;
 
     const AuthorLink = styled.a`
@@ -441,8 +513,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
     `;
 
     return (
-        <Wrapper
-            style={backgroundColor && {backgroundColor}}>
+        <Wrapper>
                 <ThumbNail>
                     {appearance === APPEARANCES.FEATURED && 
                         <CreatedDate>
@@ -450,9 +521,9 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                             <span>Oct</span>
                         </CreatedDate>
                     }
-                    {appearance !== APPEARANCES.STRIP && 
+                    {(appearance !== APPEARANCES.STRIP || appearance !== APPEARANCES.MINI)&& icon && 
                         <MediaIcon>
-                            <OddsIcon size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />
+                            <Icon type={icon} size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />
                         </MediaIcon>
                     }
                    
@@ -476,7 +547,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 }
 
 Card.propTypes = {
-    appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip']),
+    appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip', 'mini']),
     backgroundColor: PropTypes.string,
     title: PropTypes.string,
     teaser: PropTypes.string,
@@ -488,11 +559,13 @@ Card.propTypes = {
         name: PropTypes.string,
         url: PropTypes.string
     },
+    icon: PropTypes.oneOf(['tipster', 'quiz']),
     boxshadow: PropTypes.bool
 }
 
 Card.defaultProps = {
     backgroundColor: "white",
     appearance: "featured",
-    boxshadow: false
+    boxshadow: false,
+    icon: null
 }

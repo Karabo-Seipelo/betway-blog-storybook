@@ -21,6 +21,7 @@
     "react-is": "^17.0.1"
   },
   "dependencies": {
+    "@styled-icons/bootstrap": "^10.19.0",
     "@styled-icons/material": "^10.18.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

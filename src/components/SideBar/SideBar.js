@@ -2,10 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export const SideBar = ({title, boxshadow, children}) => {
+export const SideBar = ({title, boxshadow, children, width, backgroundColor}) => {
 
     const Wrapper = styled.aside`
         position: relative;
+        width: ${width};
+        background: ${backgroundColor};
 
         ${boxshadow === true && 
             `
@@ -52,9 +54,14 @@ export const SideBar = ({title, boxshadow, children}) => {
 SideBar.propTypes = {
     title: PropTypes.string,
     boxshadow: PropTypes.bool,
-    children: PropTypes.element
+    children: PropTypes.element,
+    width: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string,
+    hoverColor: PropTypes.string
 };
 
 SideBar.defaultProps = {
-    boxshadow: true
+    boxshadow: true,
+    width: "350px",
+    backgroundColor: "white",
 }
