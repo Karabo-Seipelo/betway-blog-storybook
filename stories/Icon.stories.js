@@ -9,18 +9,11 @@ export default {
     },
 };
 
-const Template = (args) => <Icon {...args} />;
+export const AllIcons = (args) => (
+    <div>
+        <Icon type="tipster" size="40" title="tipster"/>
+        <Icon type="quiz" size="40" title="quiz"/>
+    </div>
+);
 
-export const Tipster = Template.bind({});
-
-Tipster.args = {
-   type: "tipster",
-   size: "40" 
-}
-
-export const Quiz = Template.bind({});
-
-Quiz.args = {
-   type: "quiz",
-   size: "40" 
-}
+AllIcons.storyName = 'All Icons';

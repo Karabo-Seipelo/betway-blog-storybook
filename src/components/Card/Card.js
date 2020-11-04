@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon } from '../Icon/Icon';
-import { TrendingUp } from '@styled-icons/material';
 
-export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow, icon}) => {
+export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow, icon, width}) => {
 
     const APPEARANCES = {
         FEATURED: 'featured',
@@ -36,7 +35,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             ${appearance === APPEARANCES.FEATURED && 
                 `
                     background: ${backgroundColor};
-                    width: 1152px;
+                    width: ${width ? width : `1152px`};
                     height: 320px;
                 `
             }
@@ -44,7 +43,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             ${appearance === APPEARANCES.THUMB && 
                 `
                     background: ${backgroundColor};
-                    width: 215px;
+                    width: ${width ? width : `215px`};
                     height: 300px;
                 `
             }
@@ -53,7 +52,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             ${appearance === APPEARANCES.DEFAULT && 
                 `
                     background: ${backgroundColor};
-                    width: 270px;
+                    width: ${width ? width : `270px`};
                     height: 300px;
                 `
             }
@@ -61,14 +60,14 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             ${appearance === APPEARANCES.STRIP && 
                 `
                     background: ${backgroundColor};
-                    width: 360px;
+                    width: ${width ? width : `360px`};
                     height: 100px;
                 `
             }
 
             ${appearance === APPEARANCES.MINI && 
                 `
-                    width: calc(100% - 40px);
+                    width: ${width ? width : `calc(100% - 40px)`};
                     height: 100px;
                     padding: 10px 20px;
                 `
@@ -560,12 +559,14 @@ Card.propTypes = {
         url: PropTypes.string
     },
     icon: PropTypes.oneOf(['tipster', 'quiz']),
-    boxshadow: PropTypes.bool
+    boxshadow: PropTypes.bool,
+    width: PropTypes.string
 }
 
 Card.defaultProps = {
     backgroundColor: "white",
     appearance: "featured",
     boxshadow: false,
-    icon: null
+    icon: null,
+    width: null,
 }

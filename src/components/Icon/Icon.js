@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { GraphUp, TrophyFill } from '@styled-icons/bootstrap';
 
-export const Icon = ({type, size, color}) => {
+export const Icon = ({type, size, color, title}) => {
     const TipsterIcon = styled(GraphUp)`
         color: ${color};
     `;
-
+    
     const QuizIcon = styled(TrophyFill)`
         color: ${color};
     `;
@@ -15,9 +15,9 @@ export const Icon = ({type, size, color}) => {
     const renderIcon = (type, size) => {
         switch (type) {
             case 'tipster':
-                return <TipsterIcon size={size} />
+                return <TipsterIcon size={size} title={title} />
             case 'quiz':
-                return <QuizIcon size={size} />
+                return <QuizIcon size={size} title={title} />
         }
     }
 
@@ -25,9 +25,10 @@ export const Icon = ({type, size, color}) => {
 }
 
 Icon.propTypes = {
-    type: PropTypes.oneOf(['tipster', 'quiz']).isRequired,
+    type: PropTypes.oneOf(['tipster', 'quiz', 'twitter', 'facebook', 'instagram', 'youtube', 'soundcloud']).isRequired,
     size: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+    title: PropTypes.string,
 }
 
 Icon.defaultProps = {
