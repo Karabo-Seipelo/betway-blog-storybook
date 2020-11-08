@@ -5,6 +5,15 @@ import { Card } from '../src/components/Card/Card';
 export default {
     title: "Design System/SideBar",
     component: SideBar,
+    parameters: {
+        backgrounds: {
+          values: [
+            {name: 'blog', value: '#efefef'},
+            {name: 'white', value: 'white'},
+            {name: 'black', value: 'black'}
+          ]
+        },
+    },
     argTypes: {
         backgroundColor: { control: 'color' },
     },

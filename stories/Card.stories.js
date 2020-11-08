@@ -7,6 +7,15 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        backgrounds: {
+          values: [
+            {name: 'blog', value: '#efefef'},
+            {name: 'white', value: 'white'},
+            {name: 'black', value: 'black'}
+          ]
+        }
+    },
 };
 
 const Template = (args) => <Card {...args} />;

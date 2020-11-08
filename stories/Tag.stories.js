@@ -8,7 +8,7 @@ export default {
         backgroundColor: { control: 'color' },
         fontColor: { control: 'color' },
         headerColor: { control: 'color' },
-    },
+    }
 };
 
 export const Tags = (args) => (
