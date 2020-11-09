@@ -69,7 +69,7 @@ Tag.proptypes = {
 
 Tag.defaultProps = {
     boxShadow: true,
-    backgroundColor: "purple",
+    backgroundColor: "yellow",
     fontColor: "white",
     href: null,
     header: false,
