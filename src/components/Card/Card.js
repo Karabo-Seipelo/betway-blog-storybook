@@ -546,9 +546,21 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 }
 
 Card.propTypes = {
+    /*
+        The card component takes up five types of layout format.
+    */
     appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip', 'mini']),
+    /*
+        The background colour of the card a fallback has been catered for.
+    */
     backgroundColor: PropTypes.string,
+    /*
+        Title of the card.
+    */
     title: PropTypes.string,
+    /*
+        Teaser content of the card.
+    */
     teaser: PropTypes.string,
     category: PropTypes.shape({
         name: PropTypes.string,
