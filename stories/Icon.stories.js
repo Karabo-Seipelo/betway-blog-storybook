@@ -1,49 +1,134 @@
 import React from 'react';
+import styled from 'styled-components';
+
+//TODO:: use reactstrap for a quick layout only in the storybook as will as style component as well
 
 import { Icon, ICONS } from '../src/components/Icon/Icon';
+import { Container, Row, Col } from 'reactstrap';
 
 export default {
-    title: 'Design System/Icon',
+    title: 'Other/Style Guide',
     component: Icon,
     argTypes: {
         color: { control: 'color' },
     },
 };
 
-export const AllIcons = (args) => (
-    <div>
-        <div>
-            <Icon icon={ICONS.NEWSPAPER} {...args} />
-            <p>NEWSPAPER</p>
+const Square = styled.div`
+    min-height: 150px;
+    position: relative;
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  
+`;
+
+const IconName = ({children}) => {
+    return (
+        <div class="name text-muted text-decoration-none text-center pt-1 mb-2 mt-2">
+            {children}
         </div>
-        <div>
-            <Icon icon={ICONS.PLAY} {...args} />
-            <p>PLAY</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.STATSDOTS} {...args} />
-            <p>STATSDOTS</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.STATSBARS} {...args} />
-            <p>STATSBARS</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.TROPHY} {...args} />
-            <p>TROPHY</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.FACEBOOK} {...args} />
-            <p>FACEBOOK</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.WHATSAPP} {...args} />
-            
-            <p>WHATSAPP</p>
-        </div>
-        <div>
-            <Icon icon={ICONS.TWITTER} {...args} />
-            <p>TWITTER</p>
-        </div>
-    </div>
+    )
+}
+
+export const Iconography = (args) => (
+    <Container>
+        <Row>
+            <Col>
+                <h1>
+                    Iconography
+                </h1>
+                <small class="text-muted">Use of iconography on Betway Blog</small>
+                <hr />
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <h4>
+                    Article Type Icons
+                </h4>
+                <br />
+            </Col>
+        </Row>
+        <Row>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.NEWSPAPER} {...args} />
+                </Square>
+                <IconName>NEWSPAPER</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded"> 
+                    <Icon icon={ICONS.PLAY} {...args} />
+                </Square>
+                <IconName>PLAY</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.STATSDOTS} {...args} />
+                </Square>
+                <IconName>STATSDOTS</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.STATSBARS} {...args} />
+                </Square>
+                <IconName>STATSBARS</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.TROPHY} {...args} />
+                </Square>
+                <IconName>TROPHY</IconName>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <hr />
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <h4>
+                    Social Icons
+                </h4>
+                <br/>
+            </Col>
+        </Row>
+        <Row>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.FACEBOOK} {...args} />
+                </Square>
+                <IconName>FACEBOOK</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.WHATSAPP} {...args} />
+                </Square>
+                <IconName>WHATSAPP</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.TWITTER} {...args} />
+                </Square>
+                <IconName>TWITTER</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.TWITTER} {...args} />
+                </Square>
+                <IconName>TWITTER</IconName>
+            </Col>
+            <Col sm="3">
+                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
+                    <Icon icon={ICONS.TWITTER} {...args} />
+                </Square>
+                <IconName>TWITTER</IconName>
+            </Col>
+        </Row>
+    </Container>
 )

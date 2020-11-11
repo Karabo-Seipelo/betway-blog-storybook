@@ -1,5 +1,6 @@
 import React from 'react';
 import { GlobalStyle } from '../src/shared/global';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const decorators = [
   Story => (
