@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-//TODO:: use reactstrap for a quick layout only in the storybook as will as style component as well
-
 import { Icon, ICONS } from '../src/components/Icon/Icon';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -41,7 +39,7 @@ export const Iconography = (args) => (
                 <h1>
                     Iconography
                 </h1>
-                <small class="text-muted">Use of iconography on Betway Blog</small>
+                <small className="text-muted">Use of iconography on Betway Blog</small>
                 <hr />
             </Col>
         </Row>

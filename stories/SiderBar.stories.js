@@ -3,7 +3,7 @@ import { SideBar } from '../src/components/SideBar/SideBar';
 import { Card } from '../src/components/Card/Card';
 
 export default {
-    title: "Design System/SideBar",
+    title: "Components/SideBar",
     component: SideBar,
     parameters: {
         backgrounds: {
