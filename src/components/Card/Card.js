@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Icon } from '../Icon/Icon';
+import { Icon, ICONS } from '../Icon/Icon';
+
+const APPEARANCES = {
+    FEATURED: 'featured',
+    DEFAULT: 'default',
+    THUMB: 'thumb',
+    STRIP: 'strip',
+    MINI: 'mini',
+};
 
 export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow, icon, width}) => {
-
-    const APPEARANCES = {
-        FEATURED: 'featured',
-        DEFAULT: 'default',
-        THUMB: 'thumb',
-        STRIP: 'strip',
-        MINI: 'mini',
-    };
 
     const Wrapper = styled.div`
         @media (min-width: 1024px) {
@@ -520,9 +520,9 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                             <span>Oct</span>
                         </CreatedDate>
                     }
-                    {(appearance !== APPEARANCES.STRIP || appearance !== APPEARANCES.MINI)&& icon && 
+                    {(appearance !== APPEARANCES.STRIP || appearance !== APPEARANCES.MINI) && icon && 
                         <MediaIcon>
-                            <Icon type={icon} size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />
+                            {icon && <Icon type={icon} size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />}
                         </MediaIcon>
                     }
                    
@@ -549,7 +549,7 @@ Card.propTypes = {
     /*
         The card component takes up five types of layout format.
     */
-    appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip', 'mini']),
+    appearance: PropTypes.oneOf(Object.values(APPEARANCES)),
     /*
         The background colour of the card a fallback has been catered for.
     */
@@ -570,7 +570,7 @@ Card.propTypes = {
         name: PropTypes.string,
         url: PropTypes.string
     },
-    icon: PropTypes.oneOf(['tipster', 'quiz']),
+    icon: PropTypes.oneOf(Object.keys(ICONS)),
     boxshadow: PropTypes.bool,
     width: PropTypes.string
 }

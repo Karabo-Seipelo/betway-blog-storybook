@@ -25,6 +25,8 @@ export const Icon = ({icon, size, color}) => {
         },
     }
 
+    console.assert(Object.keys(ICONS));
+
     return (
         <svg 
             style={styles.svg}
