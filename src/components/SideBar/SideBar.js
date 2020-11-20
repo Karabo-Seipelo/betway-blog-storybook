@@ -41,6 +41,9 @@ export const SideBar = ({title, boxshadow, children, width, backgroundColor}) =>
 
     const Section = styled.div`
         padding: 10px 0;
+        & > div:hover {
+            background: rgba(68,68,68,.2);
+        }
     `;
 
     return (

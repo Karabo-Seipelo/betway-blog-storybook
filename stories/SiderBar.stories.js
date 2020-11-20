@@ -94,7 +94,7 @@ const Template = (args) => (
                     appearance="mini"
                     boxshadow={false}
                     icon={null}
-                    backgroundColor="rgba(68,68,68,.2)"
+                    backgroundColor="transparent"
                 />
             )
         })}
