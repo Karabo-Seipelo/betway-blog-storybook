@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '../src/components/Card/Card';
 
 export default {
-    title: "Components/Card",
+    title: "Organisms/Card",
     component: Card,
     argTypes: {
         backgroundColor: { control: 'color' },

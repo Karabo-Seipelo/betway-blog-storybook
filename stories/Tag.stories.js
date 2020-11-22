@@ -2,7 +2,7 @@ import React from 'react';
 import { Tag } from '../src/components/Tag/Tag';
 
 export default {
-    title: "Components/Tags",
+    title: "Organisms/Tags",
     component: Tag,
     argTypes: {
         backgroundColor: { control: 'color' },
