@@ -84,20 +84,23 @@ const mockCards = [
 
 const Template = (args) => (
     <SideBar {...args}>
-        {mockCards.map(({title, teaser, category, author, appearance, boxshadow, icon}) => {
-            return (
-                <Card
-                    title={title}
-                    teaser={teaser}
-                    category={category}
-                    author= {author}
-                    appearance="mini"
-                    boxshadow={false}
-                    icon={null}
-                    backgroundColor="transparent"
-                />
-            )
-        })}
+        <>
+            {mockCards.map(({title, teaser, category, author, appearance, boxshadow, icon}, index) => {
+                return (
+                    <Card
+                        key={index}
+                        title={title}
+                        teaser={teaser}
+                        category={category}
+                        author= {author}
+                        appearance="mini"
+                        boxshadow={false}
+                        icon={null}
+                        backgroundColor="transparent"
+                    />
+                )
+            })}
+        </>
     </SideBar>
 );
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon, ICONS } from '../Icon/Icon';
 
-const APPEARANCES = {
+export const APPEARANCES = {
     FEATURED: 'featured',
     DEFAULT: 'default',
     THUMB: 'thumb',

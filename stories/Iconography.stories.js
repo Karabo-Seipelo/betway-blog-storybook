@@ -26,7 +26,7 @@ const Square = styled.div`
 
 const IconName = ({children}) => {
     return (
-        <div class="name text-muted text-decoration-none text-center pt-1 mb-2 mt-2">
+        <div className="name text-muted text-decoration-none text-center pt-1 mb-2 mt-2">
             {children}
         </div>
     )
@@ -54,31 +54,31 @@ export const Iconography = (args) => (
         <Row>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.NEWSPAPER} {...args} />
+                    <Icon type="NEWSPAPER" {...args} />
                 </Square>
                 <IconName>NEWSPAPER</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded"> 
-                    <Icon icon={ICONS.PLAY} {...args} />
+                    <Icon type="PLAY" {...args} />
                 </Square>
                 <IconName>PLAY</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.STATSDOTS} {...args} />
+                    <Icon type="STATSDOTS" {...args} />
                 </Square>
                 <IconName>STATSDOTS</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.STATSBARS} {...args} />
+                    <Icon type="STATSBARS" {...args} />
                 </Square>
                 <IconName>STATSBARS</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.TROPHY} {...args} />
+                    <Icon type="TROPHY" {...args} />
                 </Square>
                 <IconName>TROPHY</IconName>
             </Col>
@@ -99,31 +99,19 @@ export const Iconography = (args) => (
         <Row>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.FACEBOOK} {...args} />
+                    <Icon type="FACEBOOK" {...args} />
                 </Square>
                 <IconName>FACEBOOK</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.WHATSAPP} {...args} />
+                    <Icon type="WHATSAPP" {...args} />
                 </Square>
                 <IconName>WHATSAPP</IconName>
             </Col>
             <Col sm="3">
                 <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.TWITTER} {...args} />
-                </Square>
-                <IconName>TWITTER</IconName>
-            </Col>
-            <Col sm="3">
-                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.TWITTER} {...args} />
-                </Square>
-                <IconName>TWITTER</IconName>
-            </Col>
-            <Col sm="3">
-                <Square className="p-3 py-4 mb-2 mt-2 bg-light text-center rounded">
-                    <Icon icon={ICONS.TWITTER} {...args} />
+                    <Icon type="TWITTER" {...args} />
                 </Square>
                 <IconName>TWITTER</IconName>
             </Col>
