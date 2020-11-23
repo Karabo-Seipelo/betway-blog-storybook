@@ -83,21 +83,61 @@ const ArticleMetaData = ({category, author, publishDate}) => {
 }
 
 const RealtedArticles = ({title, boxshadow, backgroundColor, width, hoverColor, articles }) => {
-  return articles && articles.map(({title, teaser, category, author}, index) => {
-    return (
-        <Card
-            key={index}
-            title={title}
-            teaser={teaser}
-            category={category}
-            author= {author}
-            appearance="mini"
-            boxshadow={boxshadow}
-            icon={null}
-            backgroundColor="transparent"
-        />
-    )
-  });
+
+  const Wrapper = styled.div`
+    margin: 2em 0;
+
+    & > div {
+      background: ${backgroundColor};
+      padding: 20px;
+      
+
+      @media (min-width: 1024px) {
+            padding-left: 160px;
+            padding-right: 160px;
+            margin-left: -160px;
+            margin-right: -160px;
+            width: calc(100% + ${160*2}px);
+            height: 120px;
+      }
+
+      &:hover {
+        background: ${hoverColor};
+      }
+
+      & > div:first-child {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  `;
+  const Title = styled.h5`
+    margin-bottom: 10px;
+    font-weight: 900;
+    text-transform: capitalize;
+    font-size: 1em;
+  `;
+
+  return (
+    <Wrapper>
+      {title && <Title>{title}</Title>}
+      {articles && articles.map(({title, teaser, category, author}, index) => {
+        return (
+            <Card
+                key={index}
+                title={title}
+                teaser={teaser}
+                category={category}
+                author= {author}
+                appearance="mini"
+                boxshadow={boxshadow}
+                icon={null}
+                backgroundColor="transparent"
+            />
+        )
+      })}
+    </Wrapper>
+  );
 };
 
 export const Page = ({publishDate, backgroundColor, boxshadow, title, teaser, content, category, author, featuredImage, tags, relatedArticles}) => {

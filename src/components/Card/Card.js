@@ -65,7 +65,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.MINI && 
                 `
-                    width: ${width ? width : `100%)`};
+                    width: ${width ? width : `100%`};
                     padding: 10px 20px;
                 `
             }
