@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '../src/components/Card/Card';
 
 export default {
-    title: "Design System/Card",
+    title: "Organisms/Card",
     component: Card,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -35,7 +35,7 @@ Featured.args = {
     },
     appearance: "featured",
     boxshadow: true,
-    icon: "tipster"
+    icon: "STATSDOTS"
 }
 
 export const Default = Template.bind({});
@@ -53,7 +53,7 @@ Default.args = {
     },
     appearance: "default",
     boxshadow: true,
-    icon: "quiz"
+    icon: "STATSDOTS"
 }
 
 export const Thumb = Template.bind({});
@@ -71,22 +71,6 @@ Thumb.args = {
     },
     appearance: "thumb",
     boxshadow: true,
-}
-
-export const Strip = Template.bind({});
-
-Strip.args = {
-    title: "Sunday Betting Guide: Our writers' 5 best football tips",
-    teaser: "We've compiled our best football tips, including win/draw/win and total goals, into one bite-size betting preview for Sunday's matches. You can back the 32/1 five-fold.", 
-    category: {
-        name: "Accumulator",
-        url: "http://google.com"
-    }, 
-    author: {
-        name: "Adam Drury",
-        url: "http://youtube.com"
-    },
-    appearance: "strip",
 }
 
 export const Mini = Template.bind({});

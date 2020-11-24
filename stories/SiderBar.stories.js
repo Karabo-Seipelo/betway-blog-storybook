@@ -3,7 +3,7 @@ import { SideBar } from '../src/components/SideBar/SideBar';
 import { Card } from '../src/components/Card/Card';
 
 export default {
-    title: "Design System/SideBar",
+    title: "Template/SideBar",
     component: SideBar,
     parameters: {
         backgrounds: {
@@ -94,7 +94,7 @@ const Template = (args) => (
                     appearance="mini"
                     boxshadow={false}
                     icon={null}
-                    backgroundColor="rgba(68,68,68,.2)"
+                    backgroundColor="transparent"
                 />
             )
         })}

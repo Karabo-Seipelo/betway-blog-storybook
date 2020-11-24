@@ -1,22 +1,29 @@
 import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Icon } from '../Icon/Icon';
+import { Icon, ICONS } from '../Icon/Icon';
+
+const APPEARANCES = {
+    FEATURED: 'featured',
+    DEFAULT: 'default',
+    THUMB: 'thumb',
+    MINI: 'mini',
+};
 
 export const Card = ({backgroundColor, title, teaser, category, author, appearance, boxshadow, icon, width}) => {
 
-    const APPEARANCES = {
-        FEATURED: 'featured',
-        DEFAULT: 'default',
-        THUMB: 'thumb',
-        STRIP: 'strip',
-        MINI: 'mini',
-    };
-
     const Wrapper = styled.div`
+        background-color: ${backgroundColor};
+        position: relative;
+
+        ${appearance === APPEARANCES.MINI && 
+            `
+                width: 100%;
+                height: 100px;
+            `
+        }
+
         @media (min-width: 1024px) {
-            position: relative;
-            height: 320px;
             cursor: pointer;
             overflow: hidden;
 
@@ -34,7 +41,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.FEATURED && 
                 `
-                    background: ${backgroundColor};
                     width: ${width ? width : `1152px`};
                     height: 320px;
                 `
@@ -57,35 +63,19 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 `
             }
 
-            ${appearance === APPEARANCES.STRIP && 
-                `
-                    background: ${backgroundColor};
-                    width: ${width ? width : `360px`};
-                    height: 100px;
-                `
-            }
-
             ${appearance === APPEARANCES.MINI && 
                 `
-                    width: ${width ? width : `calc(100% - 40px)`};
-                    height: 100px;
+                    width: ${width ? width : `100%)`};
                     padding: 10px 20px;
                 `
             }
         }
-
-
         
 
         &:hover {
             ${boxshadow === true &&    
                 `
                 @media (min-width: 1024px) {
-                    ${appearance !== APPEARANCES.STRIP && 
-                        `
-                        box-shadow: 0 6px 15px 0 rgba(0,0,0,0.1);
-                        `
-                    }
 
                     ${appearance !== APPEARANCES.MINI && 
                         `
@@ -95,27 +85,23 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 }
                 `
             }
-
-            ${appearance == APPEARANCES.MINI && 
-                `
-                background: ${backgroundColor};
-                `
-            }
         }
     `;
 
     const ThumbNail = styled.div`
-        background: rgba(0,0,0,.1);
-
+            background: rgba(0,0,0,.1);
+            display: inline-block;
             position: relative;
-            height: 300px;
+            float: left;
+
+            ${appearance === APPEARANCES.MINI && 
+                `
+                    width: 40%;
+                    height: 100%;
+                `
+            }
         
             @media (min-width: 1024px) {
-                display: inline-block;
-                float: left;
-                width: 50%;
-                height: 100%;
-
                 ${appearance === APPEARANCES.FEATURED && 
                     `
                         width: 50%;
@@ -140,76 +126,54 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                         margin-right: 0;
                     `
                 }
-    
-                ${appearance === APPEARANCES.STRIP && 
-                    `
-                        width: 40%;
-                        height: 100%;
-                    `
-                }
-
-                ${appearance === APPEARANCES.MINI && 
-                    `
-                        width: 40%;
-                        height: 100%;
-                    `
-                }
             }
 
     `;
 
     const Content = styled.div`
-            width: clac(100% - 20px);
-            height: auto;
             position: relative;
-            padding: 20px 20px 50px;
-            
+            display: inline-block;
+
+            ${appearance === APPEARANCES.MINI && 
+                `
+                width: 60%;
+                height: 100%;
+                padding: 25px 5px 5px 5px;
+                `
+            }
+
             @media (min-width: 1024px) {
                 position: relative;
-                display: inline-block;
+                
                 
                 ${appearance === APPEARANCES.FEATURED && 
                     `
                         float: left;
-                        width: calc(50% - 40px);
-                        height: calc(100% - 40px);
+                        width: 50%;
+                        height: 100%;
                         padding: 20px;
                     `
                 }
 
                 ${appearance === APPEARANCES.THUMB && 
                     `
-                        width: calc(100% - 40px);
-                        height: calc(50% - 40px);
+                        width: 100%;
+                        height: 50%;
                         padding: 20px;
                     `
                 }
     
                 ${appearance === APPEARANCES.DEFAULT && 
                     `
-                        width: calc(100% - 40px);
-                        height: calc(50% - 40px);
+                        width: 100%;
+                        height: 50%;
                         padding: 20px;
-                    `
-                }
-    
-                ${appearance === APPEARANCES.STRIP && 
-                    `
-                    display: inline-block;
-                    width: calc(60% - 20px);
-                    height: calc(100% - (14px * 4));
-                    padding: 10px;
-                    padding-top: calc(14px * 3);
                     `
                 }
 
                 ${appearance === APPEARANCES.MINI && 
                     `
-                    display: inline-block;
-                    width: calc(60% - 20px);
-                    height: calc(100% - (14px * 4));
-                    padding: 10px;
-                    padding-top: calc(14px * 3);
+                    padding: 20px 20px 50px;
                     `
                 }
             }
@@ -250,14 +214,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                     `
                 }
 
-                ${appearance === APPEARANCES.STRIP && 
-                    `
-                    font-size: 14px;
-                    display: inline-block;
-                    margin: 0;
-                    `
-                }
-
                 ${appearance === APPEARANCES.MINI && 
                     `
                     font-size: 14px;
@@ -285,12 +241,13 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
     `;
 
     const CreatedDate = styled.div`
+
         ${appearance === APPEARANCES.FEATURED && 
             `
             position: absolute;
             font-size: 18px;
-            width: calc(64px - 20px);
-            height: calc(64px - 20px);
+            width: 70px;
+            height: 70px;
             padding: 10px;
             top: 0;
             left: 0;
@@ -318,12 +275,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             `
         }
 
-        ${appearance === APPEARANCES.STRIP && 
-            `
-            display: inline-block;
-            `
-        }
-
         ${appearance === APPEARANCES.MINI && 
             `
             display: inline-block;
@@ -341,8 +292,8 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.FEATURED && 
                 `
-                width: calc(64px - 20px);
-                height: calc(64px - 20px);
+                width: 64px;
+                height: 64px;
                 padding: 10px;
                 `
             }
@@ -378,17 +329,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                     height: calc(64px - 20px);
                     `
                 }
-
-                ${appearance === APPEARANCES.THUMB && 
-                    `
-                    `
-                }
-
-                ${appearance === APPEARANCES.DEFAULT && 
-                    `
-                    `
-                }
-        
                 text-align: center;
             }
     `;
@@ -412,12 +352,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             ${appearance === APPEARANCES.DEFAULT && 
                 `
                     display: none;
-                `
-            }
-
-            ${appearance === APPEARANCES.STRIP && 
-                `
-                display: none;
                 `
             }
 
@@ -453,16 +387,9 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
             `
         }
 
-        ${appearance === APPEARANCES.STRIP && 
-            `
-            top: 10px;
-            font-size: 14px;
-            `
-        }
-
         ${appearance === APPEARANCES.MINI && 
             `
-            top: 10px;
+            top: 0px;
             font-size: 14px;
             `
         }
@@ -489,12 +416,6 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                 `
             }
 
-            ${appearance === APPEARANCES.STRIP && 
-                `
-                display: none;
-                `
-            }
-
             ${appearance === APPEARANCES.MINI && 
                 `
                 display: none;
@@ -505,6 +426,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
     const AuthorLink = styled.a`
         font-size: 16px;
         z-index: 11;
+
         &:before {
             content: "|";
             padding: 0 5px;
@@ -519,13 +441,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
                             <span>23</span>
                             <span>Oct</span>
                         </CreatedDate>
-                    }
-                    {(appearance !== APPEARANCES.STRIP || appearance !== APPEARANCES.MINI)&& icon && 
-                        <MediaIcon>
-                            <Icon type={icon} size={appearance === APPEARANCES.FEATURED ?  "40" : appearance === APPEARANCES.DEFAULT ||  appearance === APPEARANCES.THUMB ? "30" : "20"} />
-                        </MediaIcon>
-                    }
-                   
+                    } 
                 </ThumbNail>
                 <Content>
                     {title && <ContentHeader>
@@ -546,19 +462,31 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 }
 
 Card.propTypes = {
-    appearance: PropTypes.oneOf(['featured', 'thumb', 'default', 'strip', 'mini']),
+    /*
+        The card component takes up five types of layout format.
+    */
+    appearance: PropTypes.oneOf(Object.values(APPEARANCES)),
+    /*
+        The background colour of the card a fallback has been catered for.
+    */
     backgroundColor: PropTypes.string,
+    /*
+        Title of the card.
+    */
     title: PropTypes.string,
+    /*
+        Teaser content of the card.
+    */
     teaser: PropTypes.string,
     category: PropTypes.shape({
         name: PropTypes.string,
         url: PropTypes.string
     }),
-    author: {
+    author: PropTypes.shape({
         name: PropTypes.string,
         url: PropTypes.string
-    },
-    icon: PropTypes.oneOf(['tipster', 'quiz']),
+    }),
+    icon: PropTypes.oneOf(Object.keys(ICONS)),
     boxshadow: PropTypes.bool,
     width: PropTypes.string
 }
