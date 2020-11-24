@@ -11,15 +11,34 @@ export default {
     }
 };
 
+const mockTags = [
+    {
+        name: 'Premier league',
+        url: 'www.youtube.com'
+    },
+    {
+        name: 'Arsenal',
+        url: 'www.youtube.com'
+    },
+    {
+        name: 'Manchester united',
+        url: 'www.youtube.com'
+    },
+    {
+        name: 'Tottenham',
+        url: 'www.youtube.com'
+    }
+];
+
 export const Tags = (args) => (
     <div>
-        <Tag tagName="Tags" {...args} header={true}/>
-        <Tag tagName="Premier league" {...args}/>
-        <Tag tagName="Arsenal" {...args}/>
-        <Tag tagName="Manchester united" {...args}/>
-        <Tag tagName="Tottenham" {...args}/>
-        <Tag tagName="Six nations" {...args}/>
+        <Tag {...args} />
     </div>
 );
+
+Tags.args = {
+    tags: mockTags,
+    title: "Tags"
+}
 
 Tags.storyName = 'Tags';

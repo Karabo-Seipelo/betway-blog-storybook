@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export const Tag = ({backgroundColor, fontColor, boxShadow, href, tagName, header, headerColor}) => {
-    const Wrapper = styled.a`
+export const Tag = ({backgroundColor, fontColor, boxShadow, title, headerColor, tags}) => {
+    const Button = styled.a`
         position: relative;
         text-transform: uppercase;
         font-size: 1.1em;
@@ -13,10 +13,12 @@ export const Tag = ({backgroundColor, fontColor, boxShadow, href, tagName, heade
         float: left;
         margin: 0 5px 5px 0;
         padding: 0 20px;
-        background-color: ${header ? headerColor : backgroundColor};
-        border: 2px solid ${header ? headerColor : backgroundColor};
         transition: all .3s ease-out;
         color: ${fontColor};
+
+        &:hover {
+            text-decoration: none;
+        }
 
         ${boxShadow === true && 
             `
@@ -37,22 +39,56 @@ export const Tag = ({backgroundColor, fontColor, boxShadow, href, tagName, heade
                 }
             `
         }
-        ${!header && 
-            `
-            &:hover {
-                background-color: ${fontColor};
-                color: ${backgroundColor};
-                transition: all .2s ease-out;
-                cursor: pointer;
-            }
-            `
+    `;
+
+    const Link = styled(Button)`
+        background-color: ${backgroundColor};
+        border: 2px solid ${backgroundColor};
+
+        &:hover {
+            background-color: ${fontColor};
+            color: ${backgroundColor};
+            transition: all .2s ease-out;
+            cursor: pointer;
         }
-        
+    `;
+
+    const Header = styled(Button)`
+        background-color: ${headerColor};
+        border: 2px solid ${headerColor}; 
+
+        &:hover {
+            cursor: inherit;
+            color: ${fontColor};
+        }
+    `;
+
+    const Wrapper = styled.ul`
+        display: block;
+        list-style: none;
+        padding: 0;
+        margin: 1em 0;
+        li {
+            display: inline-block;
+        }
     `;
 
     return (
-        <Wrapper href={href}>
-            <span>{tagName}</span>
+        <Wrapper>
+            <li>
+                <Header href="#">
+                    <span>{title}</span>
+                </Header>
+            </li>
+            {tags && tags.map(({name, url}, index) => {
+                return (
+                    <li key={index}>
+                        <Link href={url}>
+                            <span>{name}</span>
+                        </Link>
+                    </li>
+                )
+            })}
         </Wrapper>
     )
 };
@@ -61,17 +97,18 @@ Tag.proptypes = {
     backgroundColor: PropTypes.string,
     fontColor: PropTypes.string,
     boxShadow: PropTypes.bool,
-    href: PropTypes.string,
-    tagName: PropTypes.string,
-    header: PropTypes.bool,
+    title: PropTypes.string.isRequired,
     headerColor: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        url: PropTypes.string
+    }))
 }
 
 Tag.defaultProps = {
     boxShadow: true,
     backgroundColor: "#81C341",
     fontColor: "white",
-    href: null,
-    header: false,
+    title: "tags",
     headerColor: "black"
 }

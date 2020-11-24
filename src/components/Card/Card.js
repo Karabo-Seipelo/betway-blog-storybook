@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon, ICONS } from '../Icon/Icon';
 
-const APPEARANCES = {
+export const APPEARANCES = {
     FEATURED: 'featured',
     DEFAULT: 'default',
     THUMB: 'thumb',
@@ -65,7 +65,7 @@ export const Card = ({backgroundColor, title, teaser, category, author, appearan
 
             ${appearance === APPEARANCES.MINI && 
                 `
-                    width: ${width ? width : `100%)`};
+                    width: ${width ? width : `100%`};
                     padding: 10px 20px;
                 `
             }

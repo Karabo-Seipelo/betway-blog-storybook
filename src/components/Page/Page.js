@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { AuthorProfile } from '../AuthorProfile/AuthorProfile';
+import { Tag } from '../Tag/Tag';
+import { Card, APPEARANCES } from '../Card/Card';
 
 const ArticleFeaturedImage = ({src, alt, caption}) => {
   const ThumbNail = styled.div`
@@ -20,7 +22,8 @@ const ArticleFeaturedImage = ({src, alt, caption}) => {
     min-width: 100px;
     img {
       display: inline-block;
-      min-width: 100%;
+      width: 100%;
+      max-width: 100%;
       transform: translateZ(0);
     }
   `;
@@ -43,6 +46,7 @@ const ArticleFeaturedImage = ({src, alt, caption}) => {
     {caption && <Caption>{caption}</Caption>}
   </ThumbNail>
 };
+
 
 const ArticleMetaData = ({category, author, publishDate}) => {
   const MetaData = styled.div`
@@ -78,16 +82,74 @@ const ArticleMetaData = ({category, author, publishDate}) => {
   )
 }
 
-export const Page = ({publishDate, backgroundColor, boxshadow, title, teaser, content, category, author, featuredImage}) => {
+const RealtedArticles = ({title, boxshadow, backgroundColor, width, hoverColor, articles }) => {
+
+  const Wrapper = styled.div`
+    margin: 2em 0;
+
+    & > div {
+      background: ${backgroundColor};
+      padding: 20px;
+      
+
+      @media (min-width: 1024px) {
+            padding-left: 160px;
+            padding-right: 160px;
+            margin-left: -160px;
+            margin-right: -160px;
+            width: calc(100% + ${160*2}px);
+            height: 120px;
+      }
+
+      &:hover {
+        background: ${hoverColor};
+      }
+
+      & > div:first-child {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  `;
+  const Title = styled.h5`
+    margin-bottom: 10px;
+    font-weight: 900;
+    text-transform: capitalize;
+    font-size: 1em;
+  `;
+
+  return (
+    <Wrapper>
+      {title && <Title>{title}</Title>}
+      {articles && articles.map(({title, teaser, category, author}, index) => {
+        return (
+            <Card
+                key={index}
+                title={title}
+                teaser={teaser}
+                category={category}
+                author= {author}
+                appearance="mini"
+                boxshadow={boxshadow}
+                icon={null}
+                backgroundColor="transparent"
+            />
+        )
+      })}
+    </Wrapper>
+  );
+};
+
+export const Page = ({publishDate, backgroundColor, boxshadow, title, teaser, content, category, author, featuredImage, tags, relatedArticles}) => {
   const metaData = {
     publishDate,
     category,
     author,
   }
   const Article = styled.article`
+    position: relative;
     background-color: ${backgroundColor};
-    padding: 20px 20px 0;
-    
+
     @media (min-width: 1024px) {
         position: relative;
         padding: 60px 160px 20px;
@@ -142,6 +204,9 @@ export const Page = ({publishDate, backgroundColor, boxshadow, title, teaser, co
 
   const ArticleBody = styled.div``;
 
+  // TODO:: next up
+  // <Tag {...tags} />
+
   return (
     <Article>
       <ArticleContent>
@@ -152,6 +217,7 @@ export const Page = ({publishDate, backgroundColor, boxshadow, title, teaser, co
         {content && <ArticleBody dangerouslySetInnerHTML={{__html: content}}></ArticleBody>}
       </ArticleContent>
       <AuthorProfile {...author} />
+      <RealtedArticles {...relatedArticles}/>
     </Article>
   )
 }
@@ -168,24 +234,58 @@ Page.propTypes = {
     url: PropTypes.string
   }),
   author: PropTypes.shape({
-      image: PropTypes.shape({
-        src: PropTypes.string,
-        alt: PropTypes.string,
-        caption: PropTypes.string
+    image: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string,
+      caption: PropTypes.string
     }),
     name: PropTypes.string,
     url: PropTypes.string,
     social: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
+        handle: PropTypes.string,
+        type: PropTypes.oneOf([
+          'NEWSPAPER',
+          'PLAY',
+          'STATSDOTS',
+          'STATSBARS',
+          'STATSBARS2',
+          'TROPHY',
+          'FACEBOOK',
+          'FACEBOOK2',
+          'WHATSAPP',
+          'TWITTER'
+        ]).isRequired,
         url: PropTypes.string
     })),
     content: PropTypes.string
   }),
-  featuredImage: {
+  featuredImage: PropTypes.shape({
     src: PropTypes.string,
     alt: PropTypes.string,
     caption: PropTypes.string
-  }
+  }),
+  relatedArticles: PropTypes.shape({
+    title: PropTypes.string,
+    boxshadow: PropTypes.bool,
+    backgroundColor: PropTypes.string,
+    width: PropTypes.string,
+    hoverColor: PropTypes.string,
+    articles: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      teaser: PropTypes.string,
+      appearance: PropTypes.oneOf(Object.values(APPEARANCES)),
+      boxshadow: PropTypes.bool
+    }))
+  }),
+ /*
+  tags: PropTypes.shape({
+    title: 'tags',
+    tags:  PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        url: PropTypes.string
+      }))
+  }),
+  */
 }
 
 Page.defaultProps = {

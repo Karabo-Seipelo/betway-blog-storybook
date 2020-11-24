@@ -54,12 +54,104 @@ const mockArticleData = {
         url: 'http://youtube.com',
         social: [
             {
-                name: 'Twitter',
-                url: 'https://twitter.com/AndrewBalding2'
+                handle: '@AndrewBalding2',
+                type: 'TWITTER',
+                url: 'https://twitter.com/AndrewBalding2',
+
             }
         ],
         content: 'Multiple Group 1 and Classic-winning Flat trainer who has amassed over 250 wins across the last two seasons.'
-    }
+    },
+    tags: {
+        title: 'tags',
+        tags: [
+            {
+                name: 'Premier league',
+                url: 'www.youtube.com'
+            },
+            {
+                name: 'Arsenal',
+                url: 'www.youtube.com'
+            },
+            {
+                name: 'Manchester united',
+                url: 'www.youtube.com'
+            },
+            {
+                name: 'Tottenham',
+                url: 'www.youtube.com'
+            }
+        ]
+    } ,
+    relatedArticles: {
+        title: 'related articles',
+        boxshadow: false,
+        backgroundColor: 'transparent',
+        with: '100%',
+        hoverColor: 'rgba(68,68,68,.2)',
+        articles: [
+            {
+                title: "Kings XI Punjab vs Rajasthan Royals betting tips & predictions",
+                teaser: "Kings XI Punjab vs Rajasthan Royals betting tips & predictions", 
+                category: {
+                    name: "IPL",
+                    url: "http://google.com"
+                }, 
+                author: {
+                    name: "Adam Drury",
+                    url: "http://youtube.com"
+                },
+                appearance: "default",
+                boxshadow: true,
+                icon: "quiz"
+            },
+            {
+                title: "Saturday Betting Guide: Our writers' 10 best football tips",
+                teaser: "Saturday Betting Guide: Our writers' 10 best football tips", 
+                category: {
+                    name: "Accumulator",
+                    url: "http://google.com"
+                }, 
+                author: {
+                    name: "Adam Drury",
+                    url: "http://youtube.com"
+                },
+                appearance: "default",
+                boxshadow: true,
+                icon: "quiz"
+            },
+            {
+                title: "The 10 most expensive players in the 2020 IPL auction",
+                teaser: "The 10 most expensive players in the 2020 IPL auction", 
+                category: {
+                    name: "IPL",
+                    url: "http://google.com"
+                }, 
+                author: {
+                    name: "Adam Drury",
+                    url: "http://youtube.com"
+                },
+                appearance: "default",
+                boxshadow: true,
+                icon: "quiz"
+            },
+            {
+                title: "Don't Speculate: 5 football tips for Saturday's matches",
+                teaser: "Don't Speculate: 5 football tips for Saturday's matches", 
+                category: {
+                    name: "Accumulator",
+                    url: "http://google.com"
+                }, 
+                author: {
+                    name: "Adam Drury",
+                    url: "http://youtube.com"
+                },
+                appearance: "default",
+                boxshadow: true,
+                icon: "quiz"
+            }
+        ]
+    } 
 }
 
 const Template = (args) =>  <Page {...args} />;
